@@ -22,7 +22,7 @@ public class QueueSend {
     private TextMessage msg;
 
 
-    public void QueueSend(String jmsFactory, String queue) {
+    public QueueSend(String jmsFactory, String queue) {
 
     }
 
