@@ -14,6 +14,7 @@
    <!--the queue for point-to-point-->
    <queue name="CS3213SimpleQueue">
       <entry name="SimpleQueue"/>
+      <entry name="QueueToProductMaker"/>
    </queue>
    
    <!--the topic for pub-sub-->
