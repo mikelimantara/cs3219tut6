@@ -16,6 +16,7 @@ public class QueueReceive implements MessageListener {
     private QueueSession qsession;
     private QueueReceiver qreceiver;
     private Queue queue;
+    private QueueReceiveDelegate delegate;
     private boolean quit = false;
 
     public QueueReceive(Context ctx, String queueName) throws NamingException, JMSException {
@@ -32,6 +33,9 @@ public class QueueReceive implements MessageListener {
         qcon.start();
     }
 
+    public void setDelegate(QueueReceiveDelegate delegate) {
+        this.delegate = delegate;
+    }
 
     @Override
     public void onMessage(Message msg) {
@@ -44,6 +48,9 @@ public class QueueReceive implements MessageListener {
             }
 
             System.out.println("Message Received: " + msgText);
+
+            // notify delegate that message is received
+            this.delegate.queueReceiveDidReceiveMessage(this, msgText);
 
             if (msgText.equalsIgnoreCase("quit")) {
                 synchronized (this) {
