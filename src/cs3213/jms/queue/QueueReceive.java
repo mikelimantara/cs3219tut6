@@ -19,8 +19,8 @@ public class QueueReceive implements MessageListener {
     private QueueReceiveDelegate delegate;
     private boolean quit = false;
 
-    public QueueReceive(Context ctx, String queueName) throws NamingException, JMSException {
-        this(ctx, JMS_FACTORY, queueName);
+    public QueueReceive(String jmsFactory, String queueName) throws NamingException, JMSException {
+        this(getInitialContext(), JMS_FACTORY, queueName);
     }
 
     public QueueReceive(Context ctx, String jmsFactory, String queueName) throws NamingException, JMSException {
@@ -71,7 +71,7 @@ public class QueueReceive implements MessageListener {
 
     public static void main(String[] args) throws Exception {        
         InitialContext ic = getInitialContext();
-        QueueReceive qr = new QueueReceive(ic, QUEUE);
+        QueueReceive qr = new QueueReceive(ic, JMS_FACTORY, QUEUE);
 
         System.out.println(
                 "JMS Ready To Receive Messages (To quit, send a \"quit\" message).");

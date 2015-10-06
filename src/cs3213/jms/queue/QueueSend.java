@@ -21,8 +21,8 @@ public class QueueSend {
     private Queue queue;
     private TextMessage msg;
 
-    public QueueSend(Context ctx, String queueName) throws NamingException, JMSException {
-        this(ctx, JMS_FACTORY, queueName);
+    public QueueSend(String jmsFactory, String queueName) throws NamingException, JMSException {
+        this(getInitialContext(), jmsFactory, queueName);
     }
 
     public QueueSend(Context ctx, String jmsFactory, String queueName) throws NamingException, JMSException {
@@ -49,7 +49,7 @@ public class QueueSend {
 
     public static void main(String[] args) throws Exception {        
         InitialContext ic = getInitialContext();
-        QueueSend qs = new QueueSend(ic, QUEUE);
+        QueueSend qs = new QueueSend(ic, JMS_FACTORY, QUEUE);
         readAndSend(qs);
         qs.close();
     }
