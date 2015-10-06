@@ -26,7 +26,7 @@ public class OrderFinetune extends Filter {
             if (args.length > 0 && args[0].equals("tcp"))
                 os.setPipeOut(new TcpPipe(41020, "127.0.0.1", 20140));
             else
-                os.setPipeOut(new JmsPipe("SimpleConnectionFactory", "SimpleQueue"));
+                os.setPipeOut(new JmsPipe("SimpleConnectionFactory", "UndefinedQueue", "QueueToProductMaker"));
 
             os.process();
         } catch (Exception e) {

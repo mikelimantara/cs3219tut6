@@ -33,7 +33,7 @@ public class ProductMaker extends Filter {
             if (args.length > 0 && args[0].equals("tcp"))
                 or.setPipeIn(new TcpPipe(20140, "127.0.0.1", 41020));
             else
-                or.setPipeIn(new JmsPipe("SimpleConnectionFactory", "SimpleQueue"));
+                or.setPipeIn(new JmsPipe("SimpleConnectionFactory", "QueueToProductMaker", "UndefinedQueue2"));
             
             or.process();
         } catch (Exception e) {
