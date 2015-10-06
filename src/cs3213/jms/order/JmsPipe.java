@@ -13,7 +13,7 @@ package cs3213.jms.order;
 public class JmsPipe implements IPipe {
     
     // your code here
-    JmsPipe(String a, String b) {}
+    JmsPipe(String jmsFactory, String listenQueue, String sendQueue) {}
 
 
     @Override
