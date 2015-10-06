@@ -21,6 +21,9 @@ public class QueueSend {
     private Queue queue;
     private TextMessage msg;
 
+    public QueueSend() {
+
+    }
 
     public QueueSend(String jmsFactory, String queue) {
 

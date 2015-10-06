@@ -18,6 +18,10 @@ public class QueueReceive implements MessageListener {
     private Queue queue;
     private boolean quit = false;
 
+    public QueueReceive() {
+
+    }
+
     public QueueReceive(String jmsFactory, String queue) {
 
     }
