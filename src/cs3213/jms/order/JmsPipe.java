@@ -54,7 +54,9 @@ public class JmsPipe implements IPipe, QueueReceiveDelegate {
             }
 
             if (receivedMessage != null) {
-                return Order.fromString(receivedMessage);
+                Order order = Order.fromString(receivedMessage);
+                receivedMessage = null;
+                return order;
             }
         } catch (Exception e) {
             System.out.println("An error has occurred: " + e.getMessage());

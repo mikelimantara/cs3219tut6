@@ -10,7 +10,7 @@ public class ProductMaker extends Filter {
         while (true) {
             order = in.read();
             if (order == null) {
-                System.err.println("[PM] Empty order. Waiting...");
+                // System.err.println("[PM] Empty order. Waiting...");
                 
                 try {
                     Thread.sleep(10);
