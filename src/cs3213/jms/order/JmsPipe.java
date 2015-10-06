@@ -4,8 +4,7 @@ import cs3213.jms.queue.QueueReceive;
 import cs3213.jms.queue.QueueReceiveDelegate;
 import cs3213.jms.queue.QueueSend;
 
-import javax.jms.JMSException;
-import javax.naming.NamingException;
+import java.util.Stack;
 
 /**
  * Matric 1:
@@ -23,7 +22,7 @@ public class JmsPipe implements IPipe, QueueReceiveDelegate {
     String jmsFactory = null;
     QueueSend qs = null;
     QueueReceive qr = null;
-    String receivedMessage = null;
+    Stack<String> receivedMessages = new Stack<String>();
     
     // your code here
     JmsPipe(String jmsFactory, String listenQueue, String sendQueue) {
@@ -53,9 +52,8 @@ public class JmsPipe implements IPipe, QueueReceiveDelegate {
                 qr.setDelegate(this);
             }
 
-            if (receivedMessage != null) {
-                Order order = Order.fromString(receivedMessage);
-                receivedMessage = null;
+            if (!receivedMessages.empty()) {
+                Order order = Order.fromString(receivedMessages.pop());
                 return order;
             }
         } catch (Exception e) {
@@ -79,6 +77,6 @@ public class JmsPipe implements IPipe, QueueReceiveDelegate {
 
     @Override
     public void queueReceiveDidReceiveMessage(QueueReceive queueReceive, String message) {
-        receivedMessage = message;
+        receivedMessages.push(message);
     }
 }
