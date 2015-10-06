@@ -18,12 +18,18 @@ public class QueueReceive implements MessageListener {
     private Queue queue;
     private boolean quit = false;
 
-    public QueueReceive() {
-
+    public QueueReceive(Context ctx, String queueName) throws NamingException, JMSException {
+        this(ctx, JMS_FACTORY, queueName);
     }
 
-    public QueueReceive(String jmsFactory, String queue) {
-
+    public QueueReceive(Context ctx, String jmsFactory, String queueName) throws NamingException, JMSException {
+        qconFactory = (QueueConnectionFactory) ctx.lookup(jmsFactory);
+        qcon = qconFactory.createQueueConnection();
+        qsession = qcon.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+        queue = (Queue) ctx.lookup(queueName);
+        qreceiver = qsession.createReceiver(queue);
+        qreceiver.setMessageListener(this);
+        qcon.start();
     }
 
 
@@ -50,17 +56,6 @@ public class QueueReceive implements MessageListener {
         }
     }
 
-    public void init(Context ctx, String queueName)
-            throws NamingException, JMSException {
-        qconFactory = (QueueConnectionFactory) ctx.lookup(JMS_FACTORY);
-        qcon = qconFactory.createQueueConnection();
-        qsession = qcon.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
-        queue = (Queue) ctx.lookup(queueName);
-        qreceiver = qsession.createReceiver(queue);
-        qreceiver.setMessageListener(this);
-        qcon.start();
-    }
-
     public void close() throws JMSException {
         qreceiver.close();
         qsession.close();
@@ -69,8 +64,7 @@ public class QueueReceive implements MessageListener {
 
     public static void main(String[] args) throws Exception {        
         InitialContext ic = getInitialContext();
-        QueueReceive qr = new QueueReceive();
-        qr.init(ic, QUEUE);
+        QueueReceive qr = new QueueReceive(ic, QUEUE);
 
         System.out.println(
                 "JMS Ready To Receive Messages (To quit, send a \"quit\" message).");

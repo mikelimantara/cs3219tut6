@@ -21,16 +21,11 @@ public class QueueSend {
     private Queue queue;
     private TextMessage msg;
 
-    public QueueSend() {
-
+    public QueueSend(Context ctx, String queueName) throws NamingException, JMSException {
+        this(ctx, JMS_FACTORY, queueName);
     }
 
-    public QueueSend(String jmsFactory, String queue) {
-
-    }
-
-    public void init(Context ctx, String queueName)
-            throws NamingException, JMSException {
+    public QueueSend(Context ctx, String jmsFactory, String queueName) throws NamingException, JMSException {
         qconFactory = (QueueConnectionFactory) ctx.lookup(JMS_FACTORY);
         qcon = qconFactory.createQueueConnection();
         qsession = qcon.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -39,6 +34,7 @@ public class QueueSend {
         msg = qsession.createTextMessage();
         qcon.start();
     }
+
 
     public void send(String message) throws JMSException {
         msg.setText(message);
@@ -53,8 +49,7 @@ public class QueueSend {
 
     public static void main(String[] args) throws Exception {        
         InitialContext ic = getInitialContext();
-        QueueSend qs = new QueueSend();
-        qs.init(ic, QUEUE);
+        QueueSend qs = new QueueSend(ic, QUEUE);
         readAndSend(qs);
         qs.close();
     }
