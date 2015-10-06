@@ -1,0 +1,19 @@
+13:09:08,487 INFO  [org.hornetq.integration.bootstrap] HQ101000: Starting HornetQ Server
+13:09:09,794 WARN  [org.hornetq.core.server] HQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+13:09:09,903 INFO  [org.hornetq.core.server] HQ221000: live server is starting with configuration HornetQ Configuration (clustered=false,backup=false,sharedStore=true,journalDirectory=../data/journal,bindingsDirectory=../data/bindings,largeMessagesDirectory=../data/large-messages,pagingDirectory=../data/paging)
+13:09:09,906 INFO  [org.hornetq.core.server] HQ221006: Waiting to obtain live lock
+13:09:10,138 INFO  [org.hornetq.core.server] HQ221013: Using NIO Journal
+13:09:10,172 WARN  [org.hornetq.core.server] HQ222007: Security risk! HornetQ is running with the default cluster admin user and default password. Please see the HornetQ user guide, cluster chapter, for instructions on how to change this.
+13:09:10,188 INFO  [org.hornetq.core.server] HQ221043: Adding protocol support CORE
+13:09:10,192 INFO  [org.hornetq.core.server] HQ221043: Adding protocol support AMQP
+13:09:10,197 INFO  [org.hornetq.core.server] HQ221043: Adding protocol support STOMP
+13:09:10,424 INFO  [org.hornetq.core.server] HQ221034: Waiting to obtain live lock
+13:09:10,425 INFO  [org.hornetq.core.server] HQ221035: Live Server Obtained live lock
+13:09:11,434 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.DLQ
+13:09:11,460 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.ExpiryQueue
+13:09:11,562 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.queue.CS3213SimpleQueue
+13:09:11,566 INFO  [org.hornetq.core.server] HQ221003: trying to deploy queue jms.topic.CS3213SimpleTopic
+13:09:11,804 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 4.0.13.Final localhost:5455
+13:09:11,815 INFO  [org.hornetq.core.server] HQ221020: Started Netty Acceptor version 4.0.13.Final localhost:5445
+13:09:11,818 INFO  [org.hornetq.core.server] HQ221007: Server is now live
+13:09:11,819 INFO  [org.hornetq.core.server] HQ221001: HornetQ Server version 2.5.0.SNAPSHOT (Wild Hornet, 124) [48a907dc-6be8-11e5-bfde-95c149dfbb8f] 
