@@ -13,5 +13,21 @@ package cs3213.jms.order;
 public class JmsPipe implements IPipe {
     
     // your code here
-    
+    JmsPipe(String a, String b) {}
+
+
+    @Override
+    public void write(Order s) {
+
+    }
+
+    @Override
+    public Order read() {
+        return null;
+    }
+
+    @Override
+    public void close() {
+
+    }
 }
