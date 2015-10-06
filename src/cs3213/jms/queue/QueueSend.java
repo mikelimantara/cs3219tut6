@@ -21,6 +21,11 @@ public class QueueSend {
     private Queue queue;
     private TextMessage msg;
 
+
+    public void QueueSend(String jmsFactory, String queue) {
+
+    }
+
     public void init(Context ctx, String queueName)
             throws NamingException, JMSException {
         qconFactory = (QueueConnectionFactory) ctx.lookup(JMS_FACTORY);

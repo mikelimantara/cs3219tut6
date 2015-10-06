@@ -18,6 +18,11 @@ public class QueueReceive implements MessageListener {
     private Queue queue;
     private boolean quit = false;
 
+    public void QueueReceive(String jmsFactory, String queue) {
+
+    }
+
+
     @Override
     public void onMessage(Message msg) {
         try {
